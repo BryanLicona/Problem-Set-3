@@ -1,0 +1,28 @@
+# Prompt user for a fraction formatted x/y
+# X & Y are integers
+# Output the fraction into a percent rounded to the nearest integer
+# If 1% or less remains, output 'E' for empty
+# if 99% output 'F' for full
+# if X or Y are not integers, or x is greater than Y, or Y is 0, prompt user again
+# Catch any exceptions like 'ValueError' or 'ZeroDivisionError'
+
+while True:
+    try:
+        x,y = (input("Fraction: ")).split('/')
+        x1 = int(x)
+        y1 = int(y)
+        
+        result = round((x1 / y1) *100)
+        
+        if x1 > y1:
+            continue
+        elif result >= 99:
+            print("F")
+        elif result <= 1:
+            print("E")
+        else:
+            print( str(result) + "%")
+    except (ValueError, ZeroDivisionError):
+        pass
+    else:
+        break
