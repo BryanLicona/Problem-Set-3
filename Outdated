@@ -1,27 +1,44 @@
-# Create a program that prompts user for items
-# one item per line - until the user inputs control-d to stop
-# Output the user's grocery list in all UPPERCASE
-# Sorted alphabetically by item
-# prefixing each line with the number of times the user inputted the item
-# No need to pluralize items
-# Case-insensitively
+# Prompt user for a date - anno Domini (month-day-year)
+# Formatted 9/8/1936 or September 8, 1936
+# Month in the latter might be values in the list below:
+# Output same date YYYY-MM-DD
+# if user's input not a valid date in format, prompt user again
+# Assume every month has no more than 31 days (No need to validate months with 28, 29, 30, 31 days)
 
-def main():
+months: [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+]
 
-    shopping_list = {}
-
-    while True:
-        try:
-            item = input()
-        except EOFError:
-            print()
-            break
-        if item.upper() in shopping_list:
-            shopping_list[item.upper()] += 1
+while True:
+    date = input("Date: ")
+    if "/" in date:
+        months, day, year = date.split("/")
+    elif "," in date:
+        date = date.replace("," , "")
+        months, day, year = date.split(" ")
+        if months in months:
+            months = months.index(months) + 1
+    else:
+        continue
+    try:
+        if int(months) > 12 or int(day) > 31:
+            continue
         else:
-            shopping_list[item.upper()] = 1
-                
-    for item in sorted(shopping_list):
-        print(shopping_list[item], item)
+            break
+    except ValueError:
+        continue
+    
+print(f"{int(year)}-{int(months):02d}-{int(months):02d}")
 
-main()
+#print(year + "-" + f"{int(months):02}" + "-" + f"{int(day):02}")   
