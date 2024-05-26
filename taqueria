@@ -1,0 +1,39 @@
+# Prompt user to place an order
+# Prompt user for items of order
+# One line per item
+# When user inputs 'control-d' to add items
+# After each inputted item display the total cost of all items
+# prefixed with a dollar sign ($)
+# formatted to two decimal places
+# Input case insensitively
+# Ignore any input that isn't an item
+# Assume every item on the menu will be 'titlecased'
+
+def main():
+    
+    menu = {
+        "Baja Taco" : 4.25,
+        "Burrito" : 7.50,
+        "Bowl" : 8.50,
+        "Nachos" : 11.00,
+        "Quesadilla" : 8.50,
+        "Super Burrito" : 8.50,
+        "Super Quesadilla" : 9.50,
+        "Taco" : 3.00,
+        "Tortilla Salad" : 8.00
+    }
+
+    total = 0
+    while True:
+        try:
+            order = input("Item: ").title().strip()      
+            if order in menu:
+                total += menu[order]
+                print("Total: $", end='')
+                print("{:.2f}".format(total))              
+        except EOFError:    
+            print()
+            break
+        
+if __name__ == "__main__":
+    main()
